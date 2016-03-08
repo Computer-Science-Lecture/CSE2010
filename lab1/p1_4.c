@@ -8,38 +8,38 @@ typedef enum { false, true } bool;
 typedef int(*Operator)(int, int, bool);
 
 inline static int addition(int first, int second, bool state) {
-	if (state == true)
-		printf(__FUNCTION__);
-	else
+	if (!state)
 		return first + second;
+	printf(__FUNCTION__);
+	return 0;
 }
 inline static int subtraction(int first, int second, bool state) {
-	if (state == true)
-		printf(__FUNCTION__);
-	else
+	if (!state)
 		return first - second;
+	printf(__FUNCTION__);
+	return 0;
 }
 inline static int multiple(int first, int second, bool state) {
-	if (state == true)
-		printf(__FUNCTION__);
-	else
+	if (!state)
 		return first * second;
+	printf(__FUNCTION__);
+	return 0;
 }
 inline static int division(int first, int second, bool state) {
-	if (state == true)
-		printf(__FUNCTION__);
-	else
+	if (!state)
 	{
-		if (!second)
+		if(!second)
 			return 0;
 		return first / second;
 	}
+	printf(__FUNCTION__);
+	return 0;
 }
 inline static int modulus(int first, int second, bool state) {
-	if (state == true)
-		printf(__FUNCTION__);
-	else
+	if (!state)
 		return first % second;
+	printf(__FUNCTION__);
+	return 0;
 }
 
 size_t set_function(Operator *, Operator);
@@ -69,6 +69,8 @@ int main(int argc, char * argv[])
 
 	return 0;
 }
+
+/*set_function (*/
 size_t set_function(Operator * functions, Operator function)
 {
 	static size_t count = 0;
