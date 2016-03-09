@@ -1,0 +1,5 @@
+4
+Daeho 100 94 98
+SungWon 70 80 90
+Jisoo 88 93 79
+Harim 60 49 70

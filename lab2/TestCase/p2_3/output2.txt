@@ -1,0 +1,19 @@
+Minsu
+progAvg	39.17
+examAvg	44.50
+Suji
+progAvg	48.67
+examAvg	45.00
+Jisu
+progAvg	43.67
+examAvg	47.50
+Sulhee
+progAvg	32.00
+examAvg	39.50
+Jiah
+progAvg	24.17
+examAvg	21.00
+
+Course
+ProgAvg	37.53
+ExamAvg	39.50

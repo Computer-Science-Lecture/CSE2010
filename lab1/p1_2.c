@@ -8,10 +8,10 @@ int main(int argc, char * argv[])
 	scanf("%d %d", &a, &b);
 	printf("you entered\n%d, %d\n", a, b);
 	swap_int(&a, &b);
-	printf("after swapping\n%d, %d", a, b);
+	printf("after swapping\n%d, %d\n", a, b);
 	return 0;
 }
-void swap_int(int * a, int * b)
+void swap_int(int * x, int * y)
 {
-	*a ^= *b ^= *a ^= *b;
+	*x = *x ^ *y ^ (*y = *x);
 }
