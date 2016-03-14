@@ -42,9 +42,9 @@ int main(int argc, char * argv[])
 void file_put(size_t count)
 {
 	for (int i = 0; i < count; i++)
-		fprintf(fout, "%s\nHwAvg %.2lf\nExamAvg %.2lf\n", names[i].name, names[i].hwavg, names[i].exavg);
+		fprintf(fout, "%s\nHwAvg %.2lf\nExamAvg %.2lf\n", names[i].name, names[i].hwavg + 0.005, names[i].exavg + 0.005);
 
-	fprintf(fout, "\nCourse\nHwAvg %.2lf\nExamAvg %.2lf\n", hw, ex);
+	fprintf(fout, "\nCourse\nHwAvg %.2lf\nExamAvg %.2lf\n", hw + 0.005, ex + 0.005);
 }
 size_t file_get()
 {
