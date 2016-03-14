@@ -60,8 +60,7 @@ size_t file_get()
 	fscanf(fin, "%d", &count);
 	names = (student*)malloc(sizeof(student) * count);
 	for (int i = 0; i < count; i++)
-	{
 		fscanf(fin, "%s %d %d %d", names[i].name, &names[i].literature, &names[i].math, &names[i].science);
-	}
+
 	return count;
 }

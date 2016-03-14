@@ -77,5 +77,6 @@ size_t file_get(char * string)
 			if(string[i] > string[j])
 				string[i]^=string[j]^=string[i]^=string[j];
 
+	free(ret);
 	return ttr;
 }
