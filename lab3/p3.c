@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct Node *PtrToNode;
 typedef PtrToNode List;
@@ -39,7 +39,7 @@ int main(int argc, char * argv[])
 		return -1;
 	}
 	
-	fp = fopen("input.txt", "r");
+	fp = fopen(argv[1], "r");
 
 	while (1)
 	{
@@ -70,7 +70,7 @@ int main(int argc, char * argv[])
 			fscanf(fp, "%d", &arg);
 			Position obj = findPrev(list, arg);
 			if (obj != NULL)
-				printf("Key of the previous node of %d is %d\n", arg, obj->value);
+				printf("Key of the previous node of %d is %d\n", arg, obj->value );
 			else
 				printf("Could not find %d in the list\n", arg);
 			break;
@@ -85,7 +85,8 @@ int main(int argc, char * argv[])
 			break;
 	}
 
-	for (Position ptr = list->next; ptr != NULL; ptr = ptr->next)
+	Position ptr;
+	for (ptr = list->next; ptr != NULL; ptr = ptr->next)
 		printf("key: %d\t", ptr->value);
 	printf("\n");
 
@@ -149,7 +150,8 @@ void Delete(List list, ElementType v)
 }
 void DelList(List list)
 {
-	for (Position ptr = list; ptr != NULL;)
+	Position ptr;
+	for (ptr = list; ptr != NULL;)
 	{
 		Position pts = ptr;
 		ptr = ptr->next;
@@ -159,14 +161,16 @@ void DelList(List list)
 
 Position findPrev(List list, ElementType v)
 {
-	for (Position ptr = list, pts = NULL; ptr != NULL; pts = ptr, ptr = ptr->next)
+	Position ptr ,pts;
+	for (ptr = list, pts = NULL; ptr != NULL; pts = ptr, ptr = ptr->next)
 		if (ptr->value == v)
 			return pts;
 	return NULL;
 }
 Position find(List list, ElementType v)
 {
-	for (Position ptr = list; ptr != NULL; ptr = ptr->next)
+	Position ptr;
+	for (ptr = list; ptr != NULL; ptr = ptr->next)
 		if (ptr->value == v)
 			return ptr;
 	return NULL;
