@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+
 typedef struct Node *PtrToNode;
 typedef PtrToNode List;
 typedef PtrToNode Position;
@@ -20,7 +22,7 @@ int isLast(List, Position);
 Position Create(ElementType);
 void Insert(List, Position, Position);
 void Delete(List, ElementType);
-void DelList(List);
+void DelList(List); 
 
 Position findPrev(List, ElementType);
 Position find(List, ElementType);
