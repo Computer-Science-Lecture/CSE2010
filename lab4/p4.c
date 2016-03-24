@@ -83,6 +83,46 @@ int pop_back(Node * stk)
 	free(ptr);
 	return ret;
 }
+int oper(char ch, int first, int second)
+{
+	switch (ch)
+	{
+		case '+':
+			return first+second;
+		case '-':
+			return first-second;
+		case '*':
+			return first*second;
+		case '/':
+			return first/second;
+		case '%':
+			return first%second;
+	}
+	return 0;
+}
+int calc(Node * stack)
+{
+	Node * number = init();
+	int first, second;
+	while(!isEmpty(stack))
+	{
+		int e = pop(stack);
+		switch (e)
+		{
+			case '+':
+			case '-':
+			case '*':
+			case '/':
+			case '%':
+				push(number, oper(e, pop(number), pop(number)));
+				break;
+			default:
+				push(number, e);
+
+		}
+	}
+	return pop(number);
+}
 void view(Node * stack)
 {
 	Node * ptr = stack->next;
@@ -97,6 +137,13 @@ void view(Node * stack)
 
 	}
 	printf("\n");
+}
+void empty(Node * stack)
+{
+	Node * ptr = stack->next, *tmp = stack;
+	for (;ptr!=NULL;tmp = ptr, ptr=ptr->next)
+		free(tmp);
+	free(ptr);
 }
 
 int main(int argc, char * argv[])
@@ -147,7 +194,11 @@ int main(int argc, char * argv[])
 					while (!isEmpty(stack))
 						push_back(posfix, pop(stack));
 					view(posfix);
+					printf("result: %d\n", calc(posfix));
+
 					fclose(fp);
+					empty(stack);
+					empty(posfix);
 					return 0;
 			}
 		}
