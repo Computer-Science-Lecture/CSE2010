@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#pragma warning (disable : 4996)
 
 typedef struct Node {
 	int value;
@@ -131,12 +130,12 @@ void view(Node * stack)
 
 	{
 		if (ptr->value > 10)
-			printf("%c, ", ptr->value);
+			printf("%c", ptr->value);
 		else
-			printf("%d, ", ptr->value);
+			printf("%d", ptr->value);
 
 	}
-	printf("\n");
+	printf("#\n");
 }
 void empty(Node * stack)
 {
@@ -149,7 +148,6 @@ void empty(Node * stack)
 int main(int argc, char * argv[])
 {
 	FILE * fp;
-
 	if (argc < 2)
 	{
 		printf("you must input argument.\n");
@@ -157,6 +155,11 @@ int main(int argc, char * argv[])
 		return -1;
 	}
 	fp = fopen(argv[1], "r");
+	if(fp==NULL)
+	{
+		printf("%s is not exist.\n", argv[1]);
+		return -2;
+	}
 
 	char ch, op;
 	Node * stack = init(), *posfix = init();
@@ -164,7 +167,6 @@ int main(int argc, char * argv[])
 	while (1)
 	{
 		fscanf(fp, "%c", &ch);
-		printf("%c", ch);
 		if (ch > '0' && ch <= '9')
 			push_back(posfix, ch - '0');
 		else
@@ -179,8 +181,6 @@ int main(int argc, char * argv[])
 						push_back(posfix, pop(stack));
 					pop(stack);
 					break;
-				case '\n':
-					break;
 				case '*':
 				case '/':
 				case '+':
@@ -189,12 +189,15 @@ int main(int argc, char * argv[])
 					while (!isEmpty(stack) && getOper(ch) <= getOper(top(stack)))
 						push_back(posfix, pop(stack));
 					push(stack, ch);
-					break;
-				case '#':
+				break;
+				case '\n':
+				case ' ':
+				case EOF:
+					printf("#");
 					while (!isEmpty(stack))
 						push_back(posfix, pop(stack));
 					view(posfix);
-					printf("result: %d\n", calc(posfix));
+					printf("result: %d#\n", calc(posfix));
 
 					fclose(fp);
 					empty(stack);
@@ -202,6 +205,8 @@ int main(int argc, char * argv[])
 					return 0;
 			}
 		}
+		printf("%c", ch);
 	}
+	fclose(fp);
 	return 0;
 }
