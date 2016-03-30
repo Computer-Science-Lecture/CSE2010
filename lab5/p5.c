@@ -33,6 +33,7 @@ int top(Node * stk)
 		printf("Print Failed: Queue is Empty\n");
 		return 0;
 	}
+	printf("Top Value: %d\n", stk->value[0]);
 	return stk->value[0];
 }
 int back(Node * stk)
@@ -42,6 +43,7 @@ int back(Node * stk)
 		printf("Print Failed: Queue is Empty\n");
 		return 0;
 	}
+	printf("Back Value: %d\n", stk->value[stk->index - 1]);
 	return stk->value[stk->index - 1];
 }
 int pop(Node * stk)
