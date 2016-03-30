@@ -92,13 +92,13 @@ int main(int argc, char * argv[])
 	}
 
 	char ch;
-	int arg;
+	int arg, chk = 0;
 	Node * queue = (Node*)malloc(sizeof(Node));
 	
 	do {
-		do {
-			fscanf(fp, "%c", &ch);
-		} while(ch == ' ' || ch =='\n');
+		chk = fscanf(fp, "%c", &ch);
+		if ( chk < 0)
+			break;
 		switch (ch)
 		{
 			case 'e':
