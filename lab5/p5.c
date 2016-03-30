@@ -19,24 +19,44 @@ Node * init(int cap)
 void push_back(Node * stk, int value)
 {
 	if (stk->index + 1 > stk->capacity)
+	{
+		printf("Insertion Failed: Queue is Full\n");
 		return;
-	else
-		stk->value[stk->index++] = value;
+	}
+	stk->value[stk->index++] = value;
+	printf("Insertion Success: %d\n", value);
 }
 int top(Node * stk)
 {
+	if(stk->index == 0)
+	{
+		printf("Print Failed: Queue is Empty\n");
+		return 0;
+	}
 	return stk->value[0];
 }
 int back(Node * stk)
 {
+	if(stk->index == 0)
+	{
+		printf("Print Failed: Queue is Empty\n");
+		return 0;
+	}
 	return stk->value[stk->index - 1];
 }
 int pop(Node * stk)
 {
-	int i;
+	int i, ret = stk->value[0];
+	if(stk->index==0)
+	{
+		printf("Dequeue Failed: Queue is Empty\n");
+		return 0;
+	}
 	for (int i = 1; i < stk->index; i++)
 		stk->value[i-1] = stk->value[i];
-	stk->value++;
+	stk->index--;
+	printf("Dequeue Success: %d\n", ret);
+	return ret;
 }
 
 void view(Node * stack)
@@ -71,13 +91,12 @@ int main(int argc, char * argv[])
 
 	char ch;
 	int arg;
-	Node * queue;
+	Node * queue = (Node*)malloc(sizeof(Node));
 	
 	do {
 		do {
 			fscanf(fp, "%c", &ch);
 		} while(ch == ' ' || ch =='\n');
-		printf("%c", ch);
 		switch (ch)
 		{
 			case 'e':
@@ -88,14 +107,14 @@ int main(int argc, char * argv[])
 				pop(queue);
 				break;
 			case 'f':
-				printf("%d\n", top(queue));
+				top(queue);
 				break;
 			case 'r':
-				printf("%d\n", back(queue));
+				back(queue);
 				break;
 			case 'n':
 				fscanf(fp, "%d", &arg);
-				init(arg);
+				queue = init(arg);
 				break;
 		}
 	} while (ch!=EOF);
