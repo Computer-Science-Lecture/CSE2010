@@ -8,4 +8,5 @@ compile@Linux Ubuntu Gnome 15.10, gcc 5.2.1
 - Lab2: Reivew on C Programming
 - Lab3: Linked List
 - Lab4: Stack Calculator
-
+- Lab5: Circular Queue ADT
+- Lab6: Postfix Evaluation
