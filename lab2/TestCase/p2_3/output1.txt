@@ -1,0 +1,13 @@
+Minsu
+progAvg	39.17
+examAvg	44.50
+Suji
+progAvg	48.67
+examAvg	45.00
+Jisu
+progAvg	43.67
+examAvg	47.50
+
+Course
+ProgAvg	43.83
+ExamAvg	45.67

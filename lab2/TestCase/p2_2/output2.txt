@@ -1,0 +1,4 @@
+      Name	Daeho	SungWon	Jisoo	Harim
+Literature	100	70	88	60
+      Math	94	80	93	49
+   Science	98	90	79	70

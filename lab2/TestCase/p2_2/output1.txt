@@ -1,0 +1,4 @@
+      Name	Sarah	Minsu	Nara	
+Literature	96	55	88	
+      Math	90	70	70	
+   Science	80	76	96	
