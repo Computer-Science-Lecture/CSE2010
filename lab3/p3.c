@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-
 typedef struct Node *PtrToNode;
 typedef PtrToNode List;
 typedef PtrToNode Position;
