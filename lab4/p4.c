@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #include <stdio.h>
+=======
+include <stdio.h>
+>>>>>>> e2e69fc4bd26023e10c75c7fe77d8f83c4dc142f
 #include <stdlib.h>
 #include <string.h>
 
@@ -198,6 +202,10 @@ int main(int argc, char * argv[])
 						push_back(posfix, pop(stack));
 					view(posfix);
 					printf("result: %d#\n", calc(posfix));
+<<<<<<< HEAD
+=======
+
+>>>>>>> e2e69fc4bd26023e10c75c7fe77d8f83c4dc142f
 					fclose(fp);
 					empty(stack);
 					empty(posfix);
