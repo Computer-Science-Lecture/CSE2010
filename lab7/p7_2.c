@@ -64,13 +64,11 @@ HeapType deleteValue(Heap * heap)
 	heap->elements[i] = last;
 	return max;
 }
-void printHeap(Heap * heap, int node)
+void printHeap(Heap * heap)
 {
-	if (node >= heap->capacity || heap->elements[node] == INF)
-		return;
-	printf("%d ", heap->elements[node]);
-	printHeap(heap, node * 2);
-	printHeap(heap, node * 2 + 1);
+	int i;
+	for(i = 1; i <= heap->size; ++i)
+		printf("%d ", heap->elements[i]);
 }
 int main(int argc, char * argv[])
 {
@@ -112,7 +110,7 @@ int main(int argc, char * argv[])
 			break;
 		case 'p':
 			fscanf(fp, "%c", &ch);
-			printHeap(heap, 1);
+			printHeap(heap);
 			printf("\n");
 			break;
 		}
