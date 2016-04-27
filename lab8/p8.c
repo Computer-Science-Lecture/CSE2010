@@ -204,8 +204,8 @@ int main(int argc, char * argv[])
 		tree = insert(tree, ch);
 	} while (ch != EOF);
 	inorder(tree);
+	printf("\n");
 	fclose(fp);
 	deleteTree(tree);
-	system("pause");
 	return 0;
 }
