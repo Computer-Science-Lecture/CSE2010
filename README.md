@@ -10,3 +10,5 @@ compile@Linux Ubuntu Gnome 15.10, gcc 5.2.1
 - Lab4: Stack Calculator
 - Lab5: Circular Queue ADT
 - Lab6: Postfix Evaluation
+- Lab7: BST, max heap 
+- Lab8: AVL tree
