@@ -46,6 +46,7 @@ int treeHeight(Tree * tree)
 
 Tree * singleRotateLeft(Tree * tree)
 {
+	printf("Single Rotate Left: %d\n", tree->value);
 	Tree * temp = tree->left;
 	tree->left = temp->right;
 	temp->right = tree;
@@ -53,6 +54,7 @@ Tree * singleRotateLeft(Tree * tree)
 }
 Tree * singleRotateRight(Tree * tree)
 {
+	printf("Single Rotate Right: %d\n", tree->value);
 	Tree * temp = tree->right;
 	tree->right = temp->left;
 	temp->left = tree;
@@ -60,11 +62,13 @@ Tree * singleRotateRight(Tree * tree)
 }
 Tree * doubleRotateLeft(Tree * tree)
 {
+	printf("Double Rotate Left: %d\n", tree->value);
 	tree->left = singleRotateRight(tree->left);
 	return singleRotateLeft(tree);
 }
 Tree * doubleRotateRight(Tree * tree)
 {
+	printf("Double Rotate Right: %d\n", tree->value);
 	tree->right = singleRotateLeft(tree->right);
 	return singleRotateRight(tree);
 }
@@ -96,7 +100,7 @@ Tree * insert(Tree * tree, TreeType value)
 		tree->value = value;
 		tree->left = tree->right = NULL;
 	}
-	else if (value < tree->value)
+	else if (value <= tree->value)
 	{
 		tree->left = insert(tree->left, value);
 		if (treeHeight(tree->left) - treeHeight(tree->right) == 2)
@@ -105,7 +109,7 @@ Tree * insert(Tree * tree, TreeType value)
 			else
 				tree = doubleRotateLeft(tree);
 	}
-	else if (value > tree->value)
+	else if (value >= tree->value)
 	{
 		tree->right = insert(tree->right, value);
 		if (treeHeight(tree->right) - treeHeight(tree->left) == 2)
@@ -202,6 +206,8 @@ int main(int argc, char * argv[])
 		if (chk < 0)
 			break;
 		tree = insert(tree, ch);
+		inorder(tree);
+		printf("\n");
 	} while (ch != EOF);
 	inorder(tree);
 	printf("\n");
