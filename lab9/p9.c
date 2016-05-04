@@ -131,6 +131,7 @@ void singleRotateLeft(Tree * tree)
 		else
 			p->right = c;
 	}
+	printf("rotation %d, left\n", tree->value);
 }
 void singleRotateRight(Tree * tree)
 {
@@ -152,6 +153,7 @@ void singleRotateRight(Tree * tree)
 		else
 			p->left = c;
 	}
+	printf("rotation %d, right\n", tree->value);
 }
 void insert(Tree ** tree, TreeType value)
 {
@@ -260,6 +262,5 @@ int main(int argc, char * argv[])
 	printf("\n");
 	fclose(fp);
 	deleteTree(tree);
-	system("pause");
 	return 0;
 }
