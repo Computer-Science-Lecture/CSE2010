@@ -8,8 +8,6 @@
 
 enum  COLOR { RED, BLACK };
 
-#define max(a, b) ((a) > (b) ? (a) : (b))
-#define tNULL -1
 typedef int TreeType;
 typedef int Color;
 typedef struct Tree {
