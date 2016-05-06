@@ -24,11 +24,12 @@ void insert_5(Tree *);
 void singleRotateRight(Tree *);
 void singleRotateLeft(Tree *);
 
-Tree * init()
+Tree * init(TreeType _value)
 {
 	Tree * tree = (Tree*)malloc(sizeof(Tree));
-	tree->left = tree->right = NULL;
-	tree->value = tNULL;
+	tree->left = tree->right = tree->parent = NULL;
+	tree->value = _value;
+	tree->color = RED;
 	return tree;
 }
 Tree * RBgrandparent(Tree * tree)
@@ -156,12 +157,7 @@ void singleRotateRight(Tree * tree)
 void insert(Tree ** tree, TreeType value)
 {
 	int left = 0;
-	Tree  * ptr = *tree, *btr = NULL,  *newNode = (Tree*)malloc(sizeof(Tree));
-	newNode->left = NULL;
-	newNode->right = NULL;
-	newNode->color = RED;
-	newNode->parent = NULL;
-	newNode->value = value;
+	Tree  * ptr = *tree, *btr = NULL,  *newNode = init(value);
 
 	for (;;)
 	{
