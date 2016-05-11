@@ -3,7 +3,7 @@
 #include <string.h>
 
 #if defined(_WIN32) && defined(_MSC_VER)
-	#pragma warning (disable : 4996)
+#pragma warning (disable : 4996)
 #endif
 
 enum { RED, BLACK };
@@ -14,7 +14,7 @@ typedef struct Node {
 	valueType value;
 	COLOR color;
 	struct Node *right, *left, *parent;
-}* node;
+}*node;
 typedef node* tree;
 
 node initilize(node, valueType);
@@ -86,7 +86,7 @@ void insertNode(tree t, valueType v)
 	for (ptr = *t; ptr != NULL;
 	btr = ptr, ptr = ((pl = (ptr->value > v)) ? ptr->left : ptr->right));
 
-	newNode = initilize(btr, v);
+		newNode = initilize(btr, v);
 
 	if (btr != NULL)
 		(pl) ? (btr->left = newNode) : (btr->right = newNode);
@@ -194,7 +194,7 @@ void removeUtil(node n)
 	}
 
 	s = sibling(n);
-	if (colorOf(n->parent)== BLACK && colorOf(s) == BLACK &&
+	if (colorOf(n->parent) == BLACK && colorOf(s) == BLACK &&
 		colorOf(s->left) == BLACK && colorOf(s->right) == BLACK)
 	{
 		s->color = RED;
@@ -342,10 +342,14 @@ int main(int argc, char * argv[])
 	for (int ch = 0, chk = 0; !(chk < 0); inorderPrint(&tree))
 	{
 		if (c == '\n')
-			printf("start delete\n", cc = 1);
+		{
+			printf("start delete\n");
+			cc = 1;
+		}
 
 		chk = fscanf(fp, "%d", &ch);
 		chk = fscanf(fp, "%c", &c);
+		printf("%d\n",c);
 
 		if (!cc)
 			insertNode(&tree, ch);
