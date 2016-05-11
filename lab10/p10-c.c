@@ -6,15 +6,14 @@
 	#pragma warning (disable : 4996)
 #endif
 
-
-enum COLOR { RED, BLACK };
+enum { RED, BLACK };
 
 typedef int COLOR;
 typedef int valueType;
 typedef struct Node {
 	valueType value;
 	COLOR color;
-	struct Tree *right, *left, *parent;
+	struct Node *right, *left, *parent;
 }* node;
 typedef node* tree;
 
@@ -25,10 +24,10 @@ node sibling(node);
 
 node findNode(tree, valueType);
 
-void insert(tree, valueType);
+void insertNode(tree, valueType);
 void insertUtil(node);
 
-void remove(tree, valueType);
+void removeNode(tree, valueType);
 void removeUtil(node);
 
 void rotateRight(node);
@@ -75,7 +74,7 @@ node sibling(node n)
 	else
 		return n->parent->left;
 }
-void insert(tree t, valueType v)
+void insertNode(tree t, valueType v)
 {
 	int pl = 0;
 	node ptr, btr = NULL, newNode;
@@ -149,7 +148,7 @@ void replaceNode(tree t, node o, node n)
 	if (n != NULL)
 		n->parent = o->parent;
 }
-void remove(tree t, valueType v)
+void removeNode(tree t, valueType v)
 {
 	node n = findNode(t, v), c;
 
@@ -348,11 +347,15 @@ int main(int argc, char * argv[])
 		chk = fscanf(fp, "%c", &c);
 
 		if (!cc)
-			insert(&tree, ch);
+			insertNode(&tree, ch);
 		else
-			remove(&tree, ch);
+			removeNode(&tree, ch);
 	}
-	
+
+#if defined(_WIN32) && defined(_MSC_VER)
+	system("pause");
+#endif
+
 	destroy(tree);
 	fclose(fp);
 
