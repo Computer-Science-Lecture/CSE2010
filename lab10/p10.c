@@ -349,7 +349,6 @@ int main(int argc, char * argv[])
 
 		chk = fscanf(fp, "%d", &ch);
 		chk = fscanf(fp, "%c", &c);
-		printf("%d\n",c);
 
 		if (!cc)
 			insertNode(&tree, ch);
