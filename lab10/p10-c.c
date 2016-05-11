@@ -9,8 +9,9 @@
 
 enum COLOR { RED, BLACK };
 
+typedef int COLOR;
 typedef int valueType;
-typedef struct Tree {
+typedef struct Node {
 	valueType value;
 	COLOR color;
 	struct Tree *right, *left, *parent;
@@ -44,7 +45,7 @@ void destroy(node);
 
 node initilize(node p, valueType v)
 {
-	node tree = (node)malloc(sizeof(Tree));
+	node tree = (node)malloc(sizeof(Node));
 	tree->left = tree->right = NULL;
 	tree->parent = p;
 	tree->value = v;
