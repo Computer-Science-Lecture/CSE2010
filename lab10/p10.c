@@ -240,6 +240,7 @@ void removeUtil(node n)
 
 void rotateRight(node tree)
 {
+	printf("rotate Right %d\n", tree->value);
 	node c = tree->left;
 	node p = tree->parent;
 
@@ -261,6 +262,7 @@ void rotateRight(node tree)
 }
 void rotateLeft(node tree)
 {
+	printf("rotate Left %d\n", tree->value);
 	node c = tree->right;
 	node p = tree->parent;
 
@@ -301,7 +303,7 @@ void inorderIterator(node n, void(*func)(node))
 }
 void inorderPrint(tree t)
 {
-	inorderInterator(*t, printNode);
+	inorderIterator(*t, printNode);
 	printf("\n");
 }
 void destroy(node tree)
