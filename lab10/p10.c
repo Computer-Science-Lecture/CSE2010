@@ -37,7 +37,7 @@ node findNode(tree, valueType);
 void replaceNode(tree, node, node);
 
 void printNode(node n);
-void inorderInterator(node n, void(*func)(node));
+void inorderIterator(node n, void(*func)(node));
 void inorderPrint(tree t);
 
 void destroy(node);
@@ -291,13 +291,13 @@ void printNode(node n)
 {
 	printf("%d(%s) ", n->value, (n->color == BLACK ? "b" : "r"));
 }
-void inorderInterator(node n, void(*func)(node))
+void inorderIterator(node n, void(*func)(node))
 {
 	if (n == NULL)
 		return;
-	inorderInterator(n->left, func);
+	inorderIterator(n->left, func);
 	func(n);
-	inorderInterator(n->right, func);
+	inorderIterator(n->right, func);
 }
 void inorderPrint(tree t)
 {
