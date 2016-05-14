@@ -258,7 +258,6 @@ void rotateRight(node tree)
 		else
 			p->left = c;
 	}
-	printf("rotation %d, right\n", tree->value);
 }
 void rotateLeft(node tree)
 {
@@ -280,7 +279,6 @@ void rotateLeft(node tree)
 		else
 			p->right = c;
 	}
-	printf("rotation %d, left\n", tree->value);
 }
 
 node findNode(tree t, valueType v)
