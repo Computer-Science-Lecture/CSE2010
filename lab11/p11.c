@@ -43,7 +43,7 @@ void insert(table t, elementType v)
 	pos = find(t, v, 1);
 	if (pos == NULL)
 	{
-		cell = (node)malloc(sizeof(Node));
+		cell = (node)malloc(sizeof(struct Node));
 		list = t->lists[hash(t->size, v)];
 		cell->next = list->next;
 		cell->value = v;
@@ -93,12 +93,12 @@ int main(int argc, char * argv[])
 		switch (cc)
 		{
 		case 0:
-			t = (table)malloc(sizeof(Table));
+			t = (table)malloc(sizeof(struct Table));
 			t->size = ch;
-			t->lists = (node*)malloc(sizeof(Node) * t->size);
+			t->lists = (node*)malloc(sizeof(struct Node) * t->size);
 			for (int i = 0; i < ch; ++i)
 			{
-				t->lists[i] = (node)malloc(sizeof(Node));
+				t->lists[i] = (node)malloc(sizeof(struct Node));
 				t->lists[i]->next = NULL;
 			}
 			break;
