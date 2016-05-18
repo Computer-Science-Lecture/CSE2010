@@ -102,9 +102,9 @@ int main(int argc, char * argv[])
 			break;
 		case 2:
 			if (find(t, ch) == NULL)
-				printf("%d in table\n", ch);
-			else
 				printf("no value %d\n", ch);
+			else
+				printf("%d in table\n", ch);
 		}
 	}
 
