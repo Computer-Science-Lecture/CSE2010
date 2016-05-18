@@ -21,11 +21,16 @@ int hash(int size, int v)
 {
 	return v % size;
 }
-node find(table t, elementType v)
+node find(table t, elementType v, int flag)
 {
 	node n, l;
+	
 	l = t->lists[hash(t->size, v)];
 	n = l->next;
+	if (flag && n != NULL)
+	{
+		printf("collision %d\n", v);
+	}
 
 	while (n != NULL && n->value != v)
 		n = n->next;
@@ -35,7 +40,7 @@ node find(table t, elementType v)
 void insert(table t, elementType v)
 {
 	node pos, cell, list;
-	pos = find(t, v);
+	pos = find(t, v, 1);
 	if (pos == NULL)
 	{
 		cell = (node)malloc(sizeof(Node));
@@ -101,7 +106,7 @@ int main(int argc, char * argv[])
 			insert(t, ch);
 			break;
 		case 2:
-			if (find(t, ch) == NULL)
+			if (find(t, ch, 0) == NULL)
 				printf("no value %d\n", ch);
 			else
 				printf("%d in table\n", ch);
