@@ -54,7 +54,11 @@ void insert(table t, elementType v)
 
 void destroy(table t)
 {
-
+	int i;
+	for(i = 0; i < t->zsize; ++i)
+		free(t->lists[i]);
+	free(t->lists);
+	free(t);
 }
 
 int main(int argc, char * argv[])
