@@ -23,7 +23,7 @@ int i, j, k;
 
 list listInit()
 {
-	list ptr = (list)malloc(sizeof(LinkList));
+	list ptr = (list)malloc(sizeof(struct LinkList));
 	ptr->next = NULL;
 	return ptr;
 }
@@ -171,8 +171,8 @@ int main(int argc, char * argv[])
 			switch (cc)
 			{
 			case 0:
-				int size = listSize(l);
-				g = graphInit(size);
+				ccc = listSize(l);
+				g = graphInit(ccc);
 				break;
 			}
 			++cc;
