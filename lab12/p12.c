@@ -110,7 +110,7 @@ void graphAppend(graph g, elementType e, elementType v)
 void graphTopsortUitl(graph g, int v, int** visited, list* stack)
 {
 	(*visited)[v] = 1;
-	
+
 	list ptr = g->vertex[v]->next;
 	for (; ptr != NULL; ptr = ptr->next)
 		if (!(*visited)[ptr->value])
@@ -134,7 +134,7 @@ void graphTopsort(graph g)
 }
 void graphFree(graph g)
 {
-//	free(g);
+	//	free(g);
 }
 
 int main(int argc, char * argv[])
@@ -162,43 +162,38 @@ int main(int argc, char * argv[])
 	graph g = NULL;
 	list l = listInit();
 
-	int ccc;
-	char c = 0, cc = 0;
-	for (int ch = 0, chk = 0; !(chk < 0);)
+	int input_int = 0, temp = 0, line = -1;
+	char input_char = '\n', chk = 1;
+	for (;!(chk < 0);)
 	{
-		if (c == '\n')
+		//줄바뀜시 실행
+		if (input_char == '\n')
 		{
-			switch (cc)
+			switch (line)
 			{
-			case 0:
-				ccc = listSize(l);
-				g = graphInit(ccc);
-				break;
+				case 0:
+					temp = listSize(l);
+					g = graphInit(temp);
+					break;
 			}
-			++cc;
+			++line;
 		}
 
-		chk = fscanf(fp, "%d", &ch);
-		chk = fscanf(fp, "%c", &c);
+		chk = fscanf(fp, "%d", &input_int);
+		chk = fscanf(fp, "%c", &input_char);
 		if (chk < 0)
 			break;
 
-		switch (cc)
+		//매 입력마다 실행
+		switch (line)
 		{
-		case 0:
-			push_back(l, ch);
-			break;
-		case 1:
-			fscanf(fp, "%d", &ccc);
-			graphAppend(g, ch-1, ccc-1);
-
-			break;
-			/*case 2:
-			if (find(t, ch, 0) == NULL)
-			printf("no value %d\n", ch);
-			else
-			printf("%d in table\n", ch);
-			*/
+			case 0:
+				push_back(l, input_int);
+				break;
+			case 1:
+				fscanf(fp, "%d", &temp);
+				graphAppend(g, input_int - 1, temp - 1);
+				break;
 		}
 	}
 	graphTopsort(g);
