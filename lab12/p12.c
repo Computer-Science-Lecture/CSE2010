@@ -120,9 +120,10 @@ void graphTopsortUitl(graph g, int v, int** visited, list* stack)
 }
 void graphTopsort(graph g)
 {
+	if(g==NULL)
+		return;
 	int * visited = (int*)malloc(sizeof(int) * g->size);
-	for (i = 0; i < g->size; ++i)
-		visited[i] = 0;
+	memset(visited, 0, g->size);
 	list stack = listInit();
 
 	for (i = 0; i < g->size; ++i)
@@ -134,7 +135,7 @@ void graphTopsort(graph g)
 }
 void graphFree(graph g)
 {
-	//	free(g);
+	//free(g);
 }
 
 int main(int argc, char * argv[])
@@ -162,12 +163,12 @@ int main(int argc, char * argv[])
 	graph g = NULL;
 	list l = listInit();
 
-	int input_int = 0, temp = 0, line = -1;
-	char input_char = '\n', chk = 1;
+	int input_int = 0, temp = 0, line = 0;
+	char input_char = 0, chk = 1;
 	for (;!(chk < 0);)
 	{
 		//줄바뀜시 실행
-		if (input_char == '\n')
+		if (input_char == 13)
 		{
 			switch (line)
 			{
@@ -181,6 +182,7 @@ int main(int argc, char * argv[])
 
 		chk = fscanf(fp, "%d", &input_int);
 		chk = fscanf(fp, "%c", &input_char);
+
 		if (chk < 0)
 			break;
 
@@ -191,7 +193,7 @@ int main(int argc, char * argv[])
 				push_back(l, input_int);
 				break;
 			case 1:
-				fscanf(fp, "%d", &temp);
+				chk = fscanf(fp, "%d", &temp);
 				graphAppend(g, input_int - 1, temp - 1);
 				break;
 		}
