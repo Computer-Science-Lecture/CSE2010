@@ -168,7 +168,7 @@ int main(int argc, char * argv[])
 	for (;!(chk < 0);)
 	{
 		//줄바뀜시 실행
-		if (input_char == 13)
+		if (input_char == '\n')
 		{
 			switch (line)
 			{
