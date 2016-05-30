@@ -130,29 +130,29 @@ void graphAppend(graph g, elementType e, elementType v)
 	push_back(g->vertex[e], v);
 	g->mat[e][v] = 1;
 }
-void graphTopsortUitl(graph g, int v, int** visited, list* stack)
+void graphTopsortUitl(graph g, int v, int* visited, list stack)
 {
-	(*visited)[v] = 1;
+	visited[v] = 1;
 
 	list ptr = g->vertex[v]->next;
 	for (; ptr != NULL; ptr = ptr->next)
-		if (!(*visited)[ptr->value])
+		if (ptr->value != -1 && !visited[ptr->value])
 			graphTopsortUitl(g, ptr->value, visited, stack);
 
-	push_back(*stack, v);
+	push_back(stack, v);
 }
 void graphTopsort(graph g)
 {
 	if (g == NULL)
 		return;
 	int * visited = (int*)malloc(sizeof(int) * g->size + sizeof(int));
+	list stack = listInit();
 	for (i = 0; i < g->size; ++i)
 		visited[i] = 0;
-	list stack = listInit();
 
 	for (i = 0; i < g->size; ++i)
 		if (!visited[i])
-			graphTopsortUitl(g, i, &visited, &stack);
+			graphTopsortUitl(g, i, visited, stack);
 
 	while (!listEmpty(stack))
 		printf("%d\t", pop_back(stack) + 1);
@@ -226,9 +226,6 @@ int main(int argc, char * argv[])
 	graphTopsort(g);
 	printf("\n");
 
-#if defined(_WIN32) && defined(_MSC_VER)
-	system("pause");
-#endif
 
 	graphFree(g);
 	fclose(fp);
