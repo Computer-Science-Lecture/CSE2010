@@ -6,8 +6,15 @@
 #pragma warning (disable : 4996)
 #endif
 
-typedef int elementType;
+#if defined(__linux__)
+	#define LINE_CHAR '\n'
+#elif defined(_MSC_VER)
+	#define LINE_CHAR '\n'
+#else
+	#define LINE_CHAR 13
+#endif
 
+typedef int elementType;
 
 typedef struct LinkList {
 	elementType value;
@@ -103,6 +110,30 @@ graph graphInit(int size)
 		g->vertex[i] = listInit();
 	return g;
 }
+void graphPrint(graph g)
+{
+	int ** mat = (int**)malloc(sizeof(int*) * g->size);
+	for (i = 0; i < g->size; ++i)
+	{
+		mat[i] = (int*)malloc(sizeof(int) * g->size);
+		for (int j = 0; j < g->size; ++j)
+			mat[i][j] = 0;
+	}
+	for (i = 0; i < g->size; ++i)
+	{
+		list ptr = g->vertex[i]->next;
+		for (; ptr != NULL; ptr = ptr->next)
+			mat[i][ptr->value] += 1;
+	}
+
+	printf("-----------------\n");
+	for (i = 0; i < g->size; ++i)
+	{
+		for (j = 0; j < g->size; ++j)
+			printf("%d, ", mat[i][j]);
+		printf("\n");
+	}
+}
 void graphAppend(graph g, elementType e, elementType v)
 {
 	push_back(g->vertex[e], v);
@@ -120,10 +151,11 @@ void graphTopsortUitl(graph g, int v, int** visited, list* stack)
 }
 void graphTopsort(graph g)
 {
-	if(g==NULL)
+	if (g == NULL)
 		return;
-	int * visited = (int*)malloc(sizeof(int) * g->size);
-	memset(visited, 0, g->size);
+	int * visited = (int*)malloc(sizeof(int) * g->size + sizeof(int));
+	for (i = 0; i < g->size; ++i)
+		visited[i] = 0;
 	list stack = listInit();
 
 	for (i = 0; i < g->size; ++i)
@@ -168,14 +200,14 @@ int main(int argc, char * argv[])
 	for (;!(chk < 0);)
 	{
 		//줄바뀜시 실행
-		if (input_char == '\n')
+		if (input_char == LINE_CHAR)
 		{
 			switch (line)
 			{
-				case 0:
-					temp = listSize(l);
-					g = graphInit(temp);
-					break;
+			case 0:
+				temp = listSize(l);
+				g = graphInit(temp);
+				break;
 			}
 			++line;
 		}
@@ -189,18 +221,18 @@ int main(int argc, char * argv[])
 		//매 입력마다 실행
 		switch (line)
 		{
-			case 0:
-				push_back(l, input_int);
-				break;
-			case 1:
-				chk = fscanf(fp, "%d", &temp);
-				graphAppend(g, input_int - 1, temp - 1);
-				break;
+		case 0:
+			push_back(l, input_int);
+			break;
+		case 1:
+			chk = fscanf(fp, "%d", &temp);
+			graphAppend(g, input_int - 1, temp - 1);
+			graphPrint(g);
+			break;
 		}
 	}
 	graphTopsort(g);
 	printf("\n");
-
 
 #if defined(_WIN32) && defined(_MSC_VER)
 	system("pause");
