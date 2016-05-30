@@ -7,7 +7,7 @@
 #endif
 
 #if defined(__linux__)
-	#define LINE_CHAR '\n'
+	#define LINE_CHAR 10
 #elif defined(_MSC_VER)
 	#define LINE_CHAR '\n'
 #else
@@ -24,6 +24,7 @@ typedef struct LinkList {
 typedef struct Graph {
 	int size;
 	list * vertex;
+	int mat[100][100];
 }*graph;
 
 int i, j, k;
@@ -32,6 +33,7 @@ list listInit()
 {
 	list ptr = (list)malloc(sizeof(struct LinkList));
 	ptr->next = NULL;
+	ptr->value = -1;
 	return ptr;
 }
 int listSize(list l)
@@ -108,35 +110,25 @@ graph graphInit(int size)
 	g->vertex = (list*)malloc(sizeof(list));
 	for (i = 0; i < size; ++i)
 		g->vertex[i] = listInit();
+	for (i = 0; i < size; ++i)
+		for(j = 0; j < size; ++j)
+			g->mat[i][j] = 0;
 	return g;
 }
 void graphPrint(graph g)
 {
-	int ** mat = (int**)malloc(sizeof(int*) * g->size);
-	for (i = 0; i < g->size; ++i)
-	{
-		mat[i] = (int*)malloc(sizeof(int) * g->size);
-		for (int j = 0; j < g->size; ++j)
-			mat[i][j] = 0;
-	}
-	for (i = 0; i < g->size; ++i)
-	{
-		list ptr = g->vertex[i]->next;
-		for (; ptr != NULL; ptr = ptr->next)
-			mat[i][ptr->value] += 1;
-	}
-
 	printf("-----------------\n");
 	for (i = 0; i < g->size; ++i)
 	{
 		for (j = 0; j < g->size; ++j)
-			printf("%d, ", mat[i][j]);
+			printf("%d, ", g->mat[i][j]);
 		printf("\n");
 	}
 }
 void graphAppend(graph g, elementType e, elementType v)
 {
 	push_back(g->vertex[e], v);
+	g->mat[e][v] = 1;
 }
 void graphTopsortUitl(graph g, int v, int** visited, list* stack)
 {
