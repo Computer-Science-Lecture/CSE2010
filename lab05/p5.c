@@ -3,7 +3,7 @@
 #include <string.h>
 
 typedef struct Node {
-	int *  value;
+	int * value;
 	int capacity;
 	int index;
 } Node;

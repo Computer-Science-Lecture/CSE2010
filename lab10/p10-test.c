@@ -484,7 +484,7 @@ int main(int argc, char * argv[])
 	char c = 0, cc = 0;
 	for (int ch = 0, chk = 0; !(chk < 0);inorderTraversal(root), printf("\n"))
 	{
-		if(c=='\n')
+		if(c==13)
 		{
 			printf("start delete\n");
 			cc  = 1;

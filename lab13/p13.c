@@ -298,8 +298,9 @@ void dijkstra(int weight[100][100], pList vertex, int start)
 		}
 	}
 
+	printf("start at %d\n", vertex->first->next->value);
 	for (i = 0; i < vertex->size; ++i)
-		printf("%d, ", dist[i]);
+		printf("to %d, cost %d\n", list_value(vertex, i), dist[i]);
 	printf("\n");
 
 	list_free(heap);
