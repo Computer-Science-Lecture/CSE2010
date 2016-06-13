@@ -236,6 +236,8 @@ void graph_find_dfs_rec(pGraph graph, int start, int to)
 		visited[i] = 0;
 
 	graph_find_dfs_rec_util(graph, start, to, visited);
+	if (!visited[to])
+		printf("can't find path\n");
 	free(visited);
 }
 void graph_find_dfs(pGraph graph, int start, int to)
