@@ -3,15 +3,15 @@
 #include <string.h>
 
 #if defined(_WIN32) && defined(_MSC_VER)
-#pragma warning (disable : 4996)
+	#pragma warning (disable : 4996)
 #endif
 
 #if defined(__linux__)
-#define LINE_CHAR 10
+	#define LINE_CHAR 10
 #elif defined(_MSC_VER)
-#define LINE_CHAR '\n'
+	#define LINE_CHAR '\n'
 #else
-#define LINE_CHAR 13
+	#define LINE_CHAR 13
 #endif
 
 #ifndef LIST_VALUE
@@ -213,6 +213,31 @@ void graph_append_edge(pGraph graph, int start, int to)
 			break;
 		}
 }
+void graph_find_dfs_rec_util(pGraph graph, int now, int to, int * visited)
+{
+	int now_index;
+	for (now_index = 0; graph->vertex[now_index]->first->value != now && now_index < graph->size; ++now_index);
+	if (visited[now] != 0)
+		return;
+	visited[now] = 1;
+	printf("visit: %d\n", now);
+	if (now == to)
+		return;
+	LIST_FOR_EACH(graph->vertex[now_index], iter)
+	{
+		graph_find_dfs_rec_util(graph, iter->value, to, visited);
+	}
+}
+void graph_find_dfs_rec(pGraph graph, int start, int to)
+{
+	printf("find path %d to %d using dfs - recursive function\n", start, to);
+	int * visited = (int*)malloc(sizeof(int) * graph->size);
+	for(i = 0; i < graph->size; ++i)
+		visited[i] = 0;
+
+	graph_find_dfs_rec_util(graph, start, to, visited);
+	free(visited);
+}
 void graph_find_dfs(pGraph graph, int start, int to)
 {
 	printf("find path %d to %d using dfs\n", start, to);
@@ -329,6 +354,7 @@ int main(int argc, char * argv[])
 				chk = fscanf(fp, "%c", &input_char);
 				graph_find_bfs(graph, input_int, k);
 				graph_find_dfs(graph, input_int, k);
+				graph_find_dfs_rec(graph, input_int, k);
 				break;
 		}
 	}
