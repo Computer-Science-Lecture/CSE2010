@@ -249,7 +249,7 @@ void graph_find_dfs(pGraph graph, int start, int to)
 	list_push(stack, start);
 	while (!list_empty(stack))
 	{
-		int now = list_pop(stack);
+		now = list_pop(stack);
 		for (now_index = 0; graph->vertex[now_index]->first->value != now && now_index < graph->size; ++now_index);
 		if (visited[now] != 0)
 			continue;
@@ -262,6 +262,8 @@ void graph_find_dfs(pGraph graph, int start, int to)
 			list_push(stack, iter->value);
 		}
 	}
+	if( now != to)
+		printf("can't find path\n");
 	list_free(stack);
 	free(visited);
 }
@@ -276,7 +278,7 @@ void graph_find_bfs(pGraph graph, int start, int to)
 	list_push_back(queue, start);
 	while (!list_empty(queue))
 	{
-		int now = list_pop(queue);
+		now = list_pop(queue);
 		for (now_index = 0; graph->vertex[now_index]->first->value != now && now_index < graph->size; ++now_index);
 		if (visited[now] != 0)
 			continue;
@@ -289,6 +291,8 @@ void graph_find_bfs(pGraph graph, int start, int to)
 			list_push_back(queue, iter->value);
 		}
 	}
+	if( now != to)
+		printf("can't find path\n");
 	list_free(queue);
 	free(visited);
 }
