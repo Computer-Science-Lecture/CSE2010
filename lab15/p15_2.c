@@ -157,14 +157,20 @@ void quick_sort_print(int ary[], int first, int pivot, int last)
 	printf("<");
 	for (i = first; i < pivot - 1; ++i)
 		printf("%d, ", ary[i]);
-	if (first != pivot)
+	if (first < pivot)
 		printf("%d", ary[pivot - 1]);
 	printf("> <%d> <", ary[pivot]);
-	for (i = pivot + 1; i < last - 1; ++i)
+	for (i = pivot + 1; i < last; ++i)
 		printf("%d, ", ary[i]);
-	if (pivot != last - 1)
-		printf("%d", ary[last - 1]);
+	if (pivot < last)
+		printf("%d", ary[last]);
 	printf(">\n");
+	
+	//int i = 0;
+	//printf("pivot: %d == ", ary[pivot]);
+	//for(i = first; i <= last; ++i)
+	//	printf("%d, ", ary[i]);
+	//printf("\n");
 }
 int quick_sort_partition(int ary[], int first, int last, Pivot getPivot)
 {
