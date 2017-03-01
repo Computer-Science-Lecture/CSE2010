@@ -14,3 +14,8 @@ compile@Linux Ubuntu Gnome 15.10, gcc 5.2.1
 - Lab08: AVL tree
 - Lab09: R-B tree insertion
 - Lab10: R-B tree deletion
+- Lab11: Hashing
+- Lab12: Topological Sort
+- Lab13: Shortest Path
+- Lab14: Depth-first search and breath-first search
+- Lab15: Merge Sort and Quick Sort
