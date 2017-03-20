@@ -1,6 +1,8 @@
 # CSE2010
 Data Structure Assignment
 
+Hellow World!
+
 compile@Linux Ubuntu Gnome 15.10, gcc 5.2.1
 
 # Assignment List
